@@ -4,13 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🛫 第1天旅遊英文 — 在機場</title>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+<style>* { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', 'PingFang TC', sans-serif; background: linear-gradient(135deg, #e0f2fe 0%, #fce7f3 100%); min-height: 100vh; padding: 20px; }
   .container { max-width: 700px; margin: 0 auto; }
   .header { text-align: center; background: linear-gradient(135deg, #0ea5e9, #ec4899); color: white; padding: 24px; border-radius: 20px; margin-bottom: 24px; box-shadow: 0 8px 32px rgba(14,165,233,0.3); }
   .header h1 { font-size: 2em; margin-bottom: 6px; }
-  .header p { font-size: 1.1em; opacity: 0.9; }
   .section { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
   .section h2 { font-size: 1.2em; margin-bottom: 16px; color: #0ea5e9; border-bottom: 2px solid #e0f2fe; padding-bottom: 8px; }
   .word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
@@ -20,9 +18,8 @@
   .word-zh { font-size: 1em; color: #374151; font-weight: 600; }
   .word-example { font-size: 0.85em; color: #6b7280; margin-top: 6px; font-style: italic; }
   .btn-row { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
-  .speak-btn { background: #0ea5e9; color: white; border: none; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.85em; transition: all 0.2s; }
+  .speak-btn { background: #0ea5e9; color: white; border: none; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 0.85em; }
   .speak-btn.pink { background: #ec4899; }
-  .speak-btn:active { transform: scale(0.95); }
   .dialogue-controls { display: flex; gap: 10px; margin-bottom: 16px; }
   .play-btn { background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; border-radius: 10px; padding: 10px 20px; cursor: pointer; font-size: 1em; }
   .reset-btn { background: #e5e7eb; color: #374151; border: none; border-radius: 10px; padding: 10px 20px; cursor: pointer; font-size: 1em; }
@@ -37,7 +34,7 @@
   .quiz-item { margin-bottom: 20px; }
   .quiz-q { font-weight: 600; color: #374151; margin-bottom: 10px; }
   .options { display: flex; flex-direction: column; gap: 8px; }
-  .option-btn { background: #f3f4f6; border: 2px solid #e5e7eb; border-radius: 10px; padding: 10px 16px; cursor: pointer; text-align: left; font-size: 0.95em; transition: all 0.2s; width: 100%; }
+  .option-btn { background: #f3f4f6; border: 2px solid #e5e7eb; border-radius: 10px; padding: 10px 16px; cursor: pointer; text-align: left; font-size: 0.95em; width: 100%; }
   .option-btn.correct { background: #dcfce7; border-color: #16a34a; color: #166534; }
   .option-btn.wrong { background: #fee2e2; border-color: #dc2626; color: #991b1b; }
   .fill-blank { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -49,45 +46,63 @@
   .feedback.no { color: #dc2626; }
   .encourage { text-align: center; background: linear-gradient(135deg, #fdf4ff, #fce7f3); border-radius: 16px; padding: 24px; border: 2px solid #e879f9; }
   .encourage p { color: #7e22ce; font-size: 1.05em; line-height: 1.8; }
-  .score-display { font-size: 1.4em; font-weight: bold; color: #7c3aed; margin-top: 10px; text-align: center; }
-</style>
+  .score-display { font-size: 1.4em; font-weight: bold; color: #7c3aed; margin-top: 10px; text-align: center; }</style>
 </head>
 <body>
 <div class="container">
   <div class="header">
     <h1>🛫 第1天旅遊英文</h1>
     <p>主題：在機場 · At the Airport</p>
-    <p style="font-size:0.9em;margin-top:8px;opacity:0.8;">媽媽加油！今天學會機場必備英文 ✈️</p>
+    <p style="font-size:0.9em;margin-top:8px;opacity:0.8;">媽媽加油！今天學會在機場必備英文 🛫</p>
   </div>
   <div class="section">
     <h2>📚 今日單字（點按鈕聽發音）</h2>
-    <div class="word-grid">
-      <div class="word-card">
-        <div class="word-en">passport</div><div class="word-phonetic">/ˈpæspɔːrt/</div>
-        <div class="word-zh">護照</div><div class="word-example">"May I see your passport?"</div>
-        <div class="btn-row"><button class="speak-btn" data-say="passport">🔊 聽發音</button><button class="speak-btn pink" data-say="May I see your passport?">🔊 聽例句</button></div>
+    <div class="word-grid"><div class="word-card">
+      <div class="word-en">passport</div>
+      <div class="word-phonetic">/ˈpæspɔːrt/</div>
+      <div class="word-zh">護照</div>
+      <div class="word-example">"May I see your passport?"</div>
+      <div class="btn-row">
+        <button class="speak-btn" data-say="passport">🔊 聽發音</button>
+        <button class="speak-btn pink" data-say="May I see your passport?">🔊 聽例句</button>
       </div>
-      <div class="word-card">
-        <div class="word-en">boarding pass</div><div class="word-phonetic">/ˈbɔːrdɪŋ pæs/</div>
-        <div class="word-zh">登機證</div><div class="word-example">"Here is your boarding pass."</div>
-        <div class="btn-row"><button class="speak-btn" data-say="boarding pass">🔊 聽發音</button><button class="speak-btn pink" data-say="Here is your boarding pass.">🔊 聽例句</button></div>
+    </div><div class="word-card">
+      <div class="word-en">boarding pass</div>
+      <div class="word-phonetic">/ˈbɔːrdɪŋ pæs/</div>
+      <div class="word-zh">登機證</div>
+      <div class="word-example">"Here is your boarding pass."</div>
+      <div class="btn-row">
+        <button class="speak-btn" data-say="boarding pass">🔊 聽發音</button>
+        <button class="speak-btn pink" data-say="Here is your boarding pass.">🔊 聽例句</button>
       </div>
-      <div class="word-card">
-        <div class="word-en">luggage</div><div class="word-phonetic">/ˈlʌɡɪdʒ/</div>
-        <div class="word-zh">行李</div><div class="word-example">"I only have one piece of luggage."</div>
-        <div class="btn-row"><button class="speak-btn" data-say="luggage">🔊 聽發音</button><button class="speak-btn pink" data-say="I only have one piece of luggage.">🔊 聽例句</button></div>
+    </div><div class="word-card">
+      <div class="word-en">luggage</div>
+      <div class="word-phonetic">/ˈlʌɡɪdʒ/</div>
+      <div class="word-zh">行李</div>
+      <div class="word-example">"I only have one piece of luggage."</div>
+      <div class="btn-row">
+        <button class="speak-btn" data-say="luggage">🔊 聽發音</button>
+        <button class="speak-btn pink" data-say="I only have one piece of luggage.">🔊 聽例句</button>
       </div>
-      <div class="word-card">
-        <div class="word-en">customs</div><div class="word-phonetic">/ˈkʌstəmz/</div>
-        <div class="word-zh">海關</div><div class="word-example">"Please go through customs."</div>
-        <div class="btn-row"><button class="speak-btn" data-say="customs">🔊 聽發音</button><button class="speak-btn pink" data-say="Please go through customs.">🔊 聽例句</button></div>
+    </div><div class="word-card">
+      <div class="word-en">customs</div>
+      <div class="word-phonetic">/ˈkʌstəmz/</div>
+      <div class="word-zh">海關</div>
+      <div class="word-example">"Please go through customs."</div>
+      <div class="btn-row">
+        <button class="speak-btn" data-say="customs">🔊 聽發音</button>
+        <button class="speak-btn pink" data-say="Please go through customs.">🔊 聽例句</button>
       </div>
-      <div class="word-card">
-        <div class="word-en">terminal</div><div class="word-phonetic">/ˈtɜːrmɪnəl/</div>
-        <div class="word-zh">航廈</div><div class="word-example">"Which terminal is my gate in?"</div>
-        <div class="btn-row"><button class="speak-btn" data-say="terminal">🔊 聽發音</button><button class="speak-btn pink" data-say="Which terminal is my gate in?">🔊 聽例句</button></div>
+    </div><div class="word-card">
+      <div class="word-en">terminal</div>
+      <div class="word-phonetic">/ˈtɜːrmɪnəl/</div>
+      <div class="word-zh">航廈</div>
+      <div class="word-example">"Which terminal is my gate in?"</div>
+      <div class="btn-row">
+        <button class="speak-btn" data-say="terminal">🔊 聽發音</button>
+        <button class="speak-btn pink" data-say="Which terminal is my gate in?">🔊 聽例句</button>
       </div>
-    </div>
+    </div></div>
   </div>
   <div class="section">
     <h2>🎭 對話練習</h2>
@@ -102,83 +117,61 @@
     <div id="quizContainer"></div>
     <div class="score-display" id="scoreDisplay"></div>
   </div>
-  <div class="encourage">
-    <p>🌸 媽媽，妳今天學了5個機場必備單字！<br>下次出發前，大聲念出來練習看看喔！<br>每天進步一點點，旅遊說英文超有自信！💪</p>
-  </div>
+  <div class="encourage"><p>🌸 媽媽，妳今天學了5個機場必備單字！下次出發前大聲念出來練習看看喔！<br>每天進步一點點，旅遊說英文超有自信！💪</p></div>
 </div>
 <script>
-const synth = window.speechSynthesis;
-function speak(text) { synth.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.85; synth.speak(u); }
-document.querySelectorAll('.speak-btn[data-say]').forEach(btn => btn.addEventListener('click', () => speak(btn.dataset.say)));
-const dialogue = [
-  { role:'staff', en:'Good morning! May I see your passport?', zh:'早安！請問可以看您的護照嗎？' },
-  { role:'mom', en:'Of course! Here you go.', zh:'當然！給您。' },
-  { role:'staff', en:'How many pieces of luggage do you have?', zh:'您有幾件行李？' },
-  { role:'mom', en:'Just one piece, please.', zh:'只有一件，謝謝。' },
-  { role:'staff', en:'Here is your boarding pass. Your gate is Gate 12.', zh:'這是您的登機證，您的登機門是12號。' },
-  { role:'mom', en:'Which terminal is Gate 12 in?', zh:'12號登機門在哪個航廈？' },
-  { role:'staff', en:"It's in Terminal A. Turn left and follow the signs!", zh:'在A航廈，左轉跟著指標走就到了！' },
-  { role:'mom', en:'Thank you so much!', zh:'非常感謝您！' },
-];
+const synth=window.speechSynthesis;
+function speak(t){synth.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.85;synth.speak(u);}
+document.querySelectorAll('.speak-btn[data-say]').forEach(b=>b.addEventListener('click',()=>speak(b.dataset.say)));
+const dialogue=[{"r":"staff","en":"Good morning! May I see your passport?","zh":"早安！請問可以看您的護照嗎？"},{"r":"mom","en":"Of course! Here you go.","zh":"當然！給您。"},{"r":"staff","en":"How many pieces of luggage do you have?","zh":"您有幾件行李？"},{"r":"mom","en":"Just one piece, please.","zh":"只有一件，謝謝。"},{"r":"staff","en":"Here is your boarding pass. Your gate is Gate 12.","zh":"這是您的登機證，登機門是12號。"},{"r":"mom","en":"Which terminal is Gate 12 in?","zh":"12號登機門在哪個航廈？"},{"r":"staff","en":"Terminal A. Turn left and follow the signs!","zh":"A航廈，左轉跟著指標走就到了！"},{"r":"mom","en":"Thank you so much!","zh":"非常感謝您！"}];
 let timer=null;
-function resetDialogue(){clearTimeout(timer);synth.cancel();document.getElementById('chat').innerHTML='';}
-document.getElementById('resetBtn').addEventListener('click',resetDialogue);
+function resetD(){clearTimeout(timer);synth.cancel();document.getElementById('chat').innerHTML='';}
+document.getElementById('resetBtn').addEventListener('click',resetD);
 document.getElementById('playBtn').addEventListener('click',()=>{
-  resetDialogue();
+  resetD();
   const chat=document.getElementById('chat');
   dialogue.forEach((line,i)=>{
-    const b=document.createElement('div');
-    b.className='bubble '+line.role; b.id='b'+i;
-    const label=document.createElement('div'); label.className='bubble-label'; label.textContent=line.role==='staff'?'✈️ 機場人員':'👩 媽媽';
-    const en=document.createElement('div'); en.className='bubble-en'; en.textContent=line.en;
-    const zh=document.createElement('div'); zh.className='bubble-zh'; zh.textContent=line.zh;
-    b.appendChild(label);b.appendChild(en);b.appendChild(zh);chat.appendChild(b);
+    const b=document.createElement('div');b.className='bubble '+line.r;b.id='b'+i;
+    ['bubble-label','bubble-en','bubble-zh'].forEach((cls,j)=>{
+      const el=document.createElement('div');el.className=cls;
+      el.textContent=[line.r==='staff'?'🗣️ 對話':'👩 媽媽',line.en,line.zh][j];
+      b.appendChild(el);
+    });
+    chat.appendChild(b);
   });
   function show(i){if(i>=dialogue.length)return;const b=document.getElementById('b'+i);if(b)b.classList.add('visible');speak(dialogue[i].en);timer=setTimeout(()=>show(i+1),(dialogue[i].en.split(' ').length*400)+800);}
   show(0);
 });
-const quizData=[
-  {type:'mc',q:'1. 「護照」的英文是？',options:['boarding pass','passport','luggage','customs'],answer:'passport'},
-  {type:'mc',q:'2. "May I see your passport?" 是什麼意思？',options:['請問您有幾件行李？','請問可以看您的護照嗎？','您的登機門在哪裡？','您需要通關嗎？'],answer:'請問可以看您的護照嗎？'},
-  {type:'mc',q:'3. 「登機證」的英文是？',options:['ticket','receipt','boarding pass','terminal'],answer:'boarding pass'},
-  {type:'fill',q:'4. 填空：I only have one piece of ______. （我只有一件行李）',answer:'luggage'},
-  {type:'fill',q:'5. 填空：Please go through ______. （請通過海關）',answer:'customs'},
-];
-let correctCount=0;
+const quizData=[{"t":"mc","q":"1.「護照」的英文是？","opts":["boarding pass","passport","luggage","customs"],"ans":"passport"},{"t":"mc","q":"2. May I see your passport? 是什麼意思？","opts":["請問您有幾件行李？","請問可以看您的護照嗎？","您的登機門在哪裡？","您需要通關嗎？"],"ans":"請問可以看您的護照嗎？"},{"t":"mc","q":"3.「登機證」的英文是？","opts":["ticket","receipt","boarding pass","terminal"],"ans":"boarding pass"},{"t":"fill","q":"4. 填空：I only have one piece of ___. (行李)","ans":"luggage"},{"t":"fill","q":"5. 填空：Please go through ___. (海關)","ans":"customs"}];
+let cc=0;
 const qc=document.getElementById('quizContainer');
 quizData.forEach((q,qi)=>{
   const div=document.createElement('div');div.className='quiz-item';
   const qDiv=document.createElement('div');qDiv.className='quiz-q';qDiv.textContent=q.q;div.appendChild(qDiv);
-  if(q.type==='mc'){
+  if(q.t==='mc'){
     const opts=document.createElement('div');opts.className='options';opts.id='opts_'+qi;
-    q.options.forEach(o=>{
+    q.opts.forEach(o=>{
       const btn=document.createElement('button');btn.className='option-btn';btn.textContent=o;
       btn.addEventListener('click',()=>{
         opts.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
         const fb=document.getElementById('fb_'+qi);
-        if(o===q.answer){btn.classList.add('correct');fb.textContent='✅ 正確！';fb.className='feedback ok';correctCount++;updateScore();}
-        else{btn.classList.add('wrong');fb.textContent='❌ 答案是：'+q.answer;fb.className='feedback no';}
-      });
-      opts.appendChild(btn);
-    });
-    div.appendChild(opts);
-  } else {
+        if(o===q.ans){btn.classList.add('correct');fb.textContent='✅ 正確！';fb.className='feedback ok';cc++;upScore();}
+        else{btn.classList.add('wrong');fb.textContent='❌ 答案是：'+q.ans;fb.className='feedback no';}
+      });opts.appendChild(btn);
+    });div.appendChild(opts);
+  }else{
     const row=document.createElement('div');row.className='fill-blank';
     const inp=document.createElement('input');inp.type='text';inp.placeholder='輸入答案...';inp.id='fill_'+qi;
-    const checkBtn=document.createElement('button');checkBtn.className='check-btn';checkBtn.textContent='確認';
-    function doCheck(){
-      const val=inp.value.trim().toLowerCase();const fb=document.getElementById('fb_'+qi);inp.disabled=true;checkBtn.disabled=true;
-      if(val===q.answer.toLowerCase()){fb.textContent='✅ 正確！';fb.className='feedback ok';inp.style.borderColor='#16a34a';correctCount++;updateScore();}
-      else{fb.textContent='❌ 答案是：'+q.answer;fb.className='feedback no';inp.style.borderColor='#dc2626';}
-    }
-    inp.addEventListener('keydown',e=>{if(e.key==='Enter')doCheck();});
-    checkBtn.addEventListener('click',doCheck);
-    row.appendChild(inp);row.appendChild(checkBtn);div.appendChild(row);
+    const ck=document.createElement('button');ck.className='check-btn';ck.textContent='確認';
+    function chk(){const v=inp.value.trim().toLowerCase();const fb=document.getElementById('fb_'+qi);inp.disabled=true;ck.disabled=true;
+      if(v===q.ans.toLowerCase()){fb.textContent='✅ 正確！';fb.className='feedback ok';inp.style.borderColor='#16a34a';cc++;upScore();}
+      else{fb.textContent='❌ 答案是：'+q.ans;fb.className='feedback no';inp.style.borderColor='#dc2626';}}
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter')chk();});ck.addEventListener('click',chk);
+    row.appendChild(inp);row.appendChild(ck);div.appendChild(row);
   }
-  const fb=document.createElement('div');fb.className='feedback';fb.id='fb_'+qi;div.appendChild(fb);
-  qc.appendChild(div);
+  const fb=document.createElement('div');fb.className='feedback';fb.id='fb_'+qi;div.appendChild(fb);qc.appendChild(div);
 });
-function updateScore(){document.getElementById('scoreDisplay').textContent='目前得分：'+correctCount+' / '+quizData.length+' 題'+(correctCount===quizData.length?' 🎉 全對！太棒了！':'');}
+function upScore(){document.getElementById('scoreDisplay').textContent='目前得分：'+cc+' / '+quizData.length+' 題'+(cc===quizData.length?' 🎉 全對！太棒了！':'');}
 </script>
 </body>
 </html>
