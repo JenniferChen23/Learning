@@ -120,56 +120,56 @@
   <div class="encourage"><p>🌸 媽媽，妳今天學了5個飯店必備單字！下次check in超有自信！<br>每天進步一點點，旅遊說英文超有自信！💪</p></div>
 </div>
 <script>
-var synth=window.speechSynthesis;
-function speak(t){synth.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.85;synth.speak(u);}
+const synth=window.speechSynthesis;
+function speak(t){synth.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.85;synth.speak(u);}
 document.querySelectorAll('.speak-btn[data-say]').forEach(b=>b.addEventListener('click',()=>speak(b.dataset.say)));
-var dialogue=[{"r":"mom","en":"Hello, I have a reservation.","zh":"您好，我有預訂房間。"},{"r":"staff","en":"May I have your name, please?","zh":"請問您的姓名？"},{"r":"mom","en":"My name is Chen.","zh":"我叫陳。"},{"r":"staff","en":"Room 305. Here is your key card.","zh":"305號房，這是您的房卡。"},{"r":"mom","en":"Is breakfast included?","zh":"有包含早餐嗎？"},{"r":"staff","en":"Yes, from 7 to 10 AM.","zh":"有的，早餐時間是早上7點到10點。"}];
+const dialogue=[{"r":"mom","en":"Hello, I have a reservation.","zh":"您好，我有預訂房間。"},{"r":"staff","en":"May I have your name, please?","zh":"請問您的姓名？"},{"r":"mom","en":"My name is Chen.","zh":"我叫陳。"},{"r":"staff","en":"Room 305. Here is your key card.","zh":"305號房，這是您的房卡。"},{"r":"mom","en":"Is breakfast included?","zh":"有包含早餐嗎？"},{"r":"staff","en":"Yes, from 7 to 10 AM.","zh":"有的，早餐時間是早上7點到10點。"}];
 let timer=null;
 function resetD(){clearTimeout(timer);synth.cancel();document.getElementById('chat').innerHTML='';}
 document.getElementById('resetBtn').addEventListener('click',resetD);
 document.getElementById('playBtn').addEventListener('click',()=>{
   resetD();
-  var chat=document.getElementById('chat');
+  const chat=document.getElementById('chat');
   dialogue.forEach((line,i)=>{
-    var b=document.createElement('div');b.className='bubble '+line.r;b.id='b'+i;
+    const b=document.createElement('div');b.className='bubble '+line.r;b.id='b'+i;
     ['bubble-label','bubble-en','bubble-zh'].forEach((cls,j)=>{
-      var el=document.createElement('div');el.className=cls;
+      const el=document.createElement('div');el.className=cls;
       el.textContent=[line.r==='staff'?'🗣️ 對話':'👩 媽媽',line.en,line.zh][j];
       b.appendChild(el);
     });
     chat.appendChild(b);
   });
-  function show(i){if(i>=dialogue.length)return;var b=document.getElementById('b'+i);if(b)b.classList.add('visible');speak(dialogue[i].en);timer=setTimeout(()=>show(i+1),(dialogue[i].en.split(' ').length*400)+800);}
+  function show(i){if(i>=dialogue.length)return;const b=document.getElementById('b'+i);if(b)b.classList.add('visible');speak(dialogue[i].en);timer=setTimeout(()=>show(i+1),(dialogue[i].en.split(' ').length*400)+800);}
   show(0);
 });
-var quizData=[{"t":"mc","q":"1.「預約」的英文是？","opts":["check in","reservation","key card","breakfast"],"ans":"reservation"},{"t":"mc","q":"2. Is breakfast included? 是什麼意思？","opts":["早餐在哪裡？","早餐幾點？","有包含早餐嗎？","早餐要多少錢？"],"ans":"有包含早餐嗎？"},{"t":"mc","q":"3.「房卡」的英文是？","opts":["room key","door card","key card","card room"],"ans":"key card"},{"t":"fill","q":"4. 填空：I have a ___. (預約)","ans":"reservation"},{"t":"fill","q":"5. 填空：I would like to check ___, please. (入住)","ans":"in"}];
+const quizData=[{"t":"mc","q":"1.「預約」的英文是？","opts":["check in","reservation","key card","breakfast"],"ans":"reservation"},{"t":"mc","q":"2. Is breakfast included? 是什麼意思？","opts":["早餐在哪裡？","早餐幾點？","有包含早餐嗎？","早餐要多少錢？"],"ans":"有包含早餐嗎？"},{"t":"mc","q":"3.「房卡」的英文是？","opts":["room key","door card","key card","card room"],"ans":"key card"},{"t":"fill","q":"4. 填空：I have a ___. (預約)","ans":"reservation"},{"t":"fill","q":"5. 填空：I would like to check ___, please. (入住)","ans":"in"}];
 let cc=0;
-var qc=document.getElementById('quizContainer');
+const qc=document.getElementById('quizContainer');
 quizData.forEach((q,qi)=>{
-  var div=document.createElement('div');div.className='quiz-item';
-  var qDiv=document.createElement('div');qDiv.className='quiz-q';qDiv.textContent=q.q;div.appendChild(qDiv);
+  const div=document.createElement('div');div.className='quiz-item';
+  const qDiv=document.createElement('div');qDiv.className='quiz-q';qDiv.textContent=q.q;div.appendChild(qDiv);
   if(q.t==='mc'){
-    var opts=document.createElement('div');opts.className='options';opts.id='opts_'+qi;
+    const opts=document.createElement('div');opts.className='options';opts.id='opts_'+qi;
     q.opts.forEach(o=>{
-      var btn=document.createElement('button');btn.className='option-btn';btn.textContent=o;
+      const btn=document.createElement('button');btn.className='option-btn';btn.textContent=o;
       btn.addEventListener('click',()=>{
         opts.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
-        var fb=document.getElementById('fb_'+qi);
+        const fb=document.getElementById('fb_'+qi);
         if(o===q.ans){btn.classList.add('correct');fb.textContent='✅ 正確！';fb.className='feedback ok';cc++;upScore();}
         else{btn.classList.add('wrong');fb.textContent='❌ 答案是：'+q.ans;fb.className='feedback no';}
       });opts.appendChild(btn);
     });div.appendChild(opts);
   }else{
-    var row=document.createElement('div');row.className='fill-blank';
-    var inp=document.createElement('input');inp.type='text';inp.placeholder='輸入答案...';inp.id='fill_'+qi;
-    var ck=document.createElement('button');ck.className='check-btn';ck.textContent='確認';
-    function chk(){var v=inp.value.trim().toLowerCase();var fb=document.getElementById('fb_'+qi);inp.disabled=true;ck.disabled=true;
+    const row=document.createElement('div');row.className='fill-blank';
+    const inp=document.createElement('input');inp.type='text';inp.placeholder='輸入答案...';inp.id='fill_'+qi;
+    const ck=document.createElement('button');ck.className='check-btn';ck.textContent='確認';
+    function chk(){const v=inp.value.trim().toLowerCase();const fb=document.getElementById('fb_'+qi);inp.disabled=true;ck.disabled=true;
       if(v===q.ans.toLowerCase()){fb.textContent='✅ 正確！';fb.className='feedback ok';inp.style.borderColor='#16a34a';cc++;upScore();}
       else{fb.textContent='❌ 答案是：'+q.ans;fb.className='feedback no';inp.style.borderColor='#dc2626';}}
     inp.addEventListener('keydown',e=>{if(e.key==='Enter')chk();});ck.addEventListener('click',chk);
     row.appendChild(inp);row.appendChild(ck);div.appendChild(row);
   }
-  var fb=document.createElement('div');fb.className='feedback';fb.id='fb_'+qi;div.appendChild(fb);qc.appendChild(div);
+  const fb=document.createElement('div');fb.className='feedback';fb.id='fb_'+qi;div.appendChild(fb);qc.appendChild(div);
 });
 function upScore(){document.getElementById('scoreDisplay').textContent='目前得分：'+cc+' / '+quizData.length+' 題'+(cc===quizData.length?' 🎉 全對！太棒了！':'');}
 </script>
