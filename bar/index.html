@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Bar Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F2E9;--paper-2:#EFE9DA;--ink:#23201C;--ink-soft:#5A5345;
+    --oxblood:#7A2222;--oxblood-soft:#9E3B3B;--brass:#B08A4A;--line:#D8CFBC;
+    --high:#7A2222;--med:#B08A4A;--low:#6E7B6A;
+    --shadow:0 1px 0 rgba(35,32,28,.04),0 12px 32px -18px rgba(35,32,28,.45);--r:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;background-image:radial-gradient(circle at 1px 1px,rgba(35,32,28,.035) 1px,transparent 0);background-size:22px 22px;}
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px 96px}
+  header.mast{padding:44px 0 22px;border-bottom:1.5px solid var(--ink)}
+  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--oxblood);font-weight:600;display:flex;justify-content:space-between;align-items:baseline}
+  .eyebrow .day{color:var(--ink-soft)}
+  .mast h1{font-family:Fraunces,serif;font-weight:600;font-size:clamp(30px,6vw,46px);line-height:1.04;margin:14px 0 6px;letter-spacing:-.01em}
+  .mast .sub{font-size:14px;color:var(--ink-soft)}
+  .meta-row{display:flex;gap:8px;align-items:center;margin-top:16px;flex-wrap:wrap}
+  .tag{font-size:11px;font-weight:600;letter-spacing:.04em;padding:4px 10px;border-radius:999px;text-transform:uppercase}
+  .tag.high{background:rgba(122,34,34,.1);color:var(--high)}
+  .tag.med{background:rgba(176,138,74,.16);color:#7d5e22}
+  .tag.low{background:rgba(110,123,106,.16);color:#3f4a3c}
+  .tag.freq{background:var(--paper-2);color:var(--ink-soft);border:1px solid var(--line)}
+  .rail{display:flex;gap:6px;margin-top:22px}
+  .rail .seg{flex:1;height:4px;border-radius:2px;background:var(--line)}
+  .rail .seg.done{background:var(--oxblood)}
+  .rail-label{font-size:11px;color:var(--ink-soft);margin-top:8px;letter-spacing:.04em}
+  section{margin-top:40px;scroll-margin-top:20px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+  .sec-num{font-family:Fraunces,serif;font-style:italic;font-size:22px;color:var(--brass)}
+  .sec-title{font-family:Fraunces,serif;font-weight:600;font-size:21px;letter-spacing:-.01em}
+  .sec-note{font-size:13px;color:var(--ink-soft);margin:-6px 0 14px}
+  .card{background:#FCFAF4;border:1px solid var(--line);border-radius:var(--r);padding:22px 22px;box-shadow:var(--shadow)}
+  .rule-statement{font-family:Fraunces,serif;font-size:18px;line-height:1.5}
+  .elements{margin:16px 0 0;padding:0;counter-reset:el;list-style:none}
+  .elements li{position:relative;padding:8px 0 8px 38px;border-top:1px solid var(--line)}
+  .elements li:first-child{border-top:none}
+  .elements li::before{counter-increment:el;content:counter(el);position:absolute;left:0;top:8px;width:24px;height:24px;border-radius:50%;background:var(--oxblood);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
+  .mnemonic{margin-top:16px;padding:12px 14px;background:var(--paper-2);border-left:3px solid var(--brass);border-radius:0 8px 8px 0;font-size:14px}
+  .mnemonic b{font-weight:600;color:var(--oxblood)}
+  .recall-item{padding:14px 0;border-top:1px solid var(--line)}
+  .recall-item:first-child{border-top:none;padding-top:2px}
+  .recall-q{font-size:15px;font-weight:500}
+  .recall-when{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);font-weight:600;margin-bottom:4px}
+  .gate{margin-top:18px;border:1.5px dashed var(--brass);border-radius:var(--r);overflow:hidden;background:repeating-linear-gradient(135deg,var(--paper-2),var(--paper-2) 10px,#EAE2D0 10px,#EAE2D0 20px)}
+  .gate-btn{width:100%;border:none;background:transparent;cursor:pointer;padding:18px;font-family:Inter;font-size:14px;font-weight:600;letter-spacing:.04em;color:var(--oxblood);display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s}
+  .gate-btn:hover{background:rgba(122,34,34,.05)}
+  .gate-btn:focus-visible{outline:2px solid var(--oxblood);outline-offset:-4px}
+  .seal{width:26px;height:26px;border-radius:50%;background:var(--oxblood);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Fraunces,serif;font-size:13px;font-weight:600}
+  .gate-body{display:none;padding:0 20px 20px;background:#FCFAF4;animation:unseal .4s ease}
+  .gate.open .gate-body{display:block}
+  .gate.open{border-style:solid;border-color:var(--line);background:#FCFAF4}
+  .gate.open .gate-btn{border-bottom:1px solid var(--line);color:var(--ink-soft)}
+  @keyframes unseal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  .answer-block{padding-top:16px}
+  .answer-block + .answer-block{border-top:1px solid var(--line);margin-top:16px}
+  .answer-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);font-weight:600;margin-bottom:6px}
+  .answer-text{font-size:14px}
+  .irac{margin-top:10px}
+  .irac .leg{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+  .irac .leg:first-child{border-top:none}
+  .irac .leg .k{font-family:Fraunces,serif;font-weight:600;color:var(--oxblood);min-width:88px;font-size:14px}
+  .irac .leg .v{font-size:14px}
+  .hypo{font-size:15px;line-height:1.65}
+  .write-prompt{margin-top:14px;font-size:13px;color:var(--ink-soft);display:flex;gap:8px;align-items:center}
+  .write-prompt::before{content:"✎";color:var(--brass);font-size:16px}
+  footer{margin-top:56px;padding-top:22px;border-top:1.5px solid var(--ink);font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  footer a{color:var(--oxblood);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  @media(max-width:520px){.irac .leg{flex-direction:column;gap:2px}.irac .leg .k{min-width:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow"><span>Daily Bar Review</span><span class="day" id="dayLabel"></span></div>
+    <h1 id="ruleTitle"></h1>
+    <div class="sub" id="subjectLine"></div>
+    <div class="meta-row" id="metaRow"></div>
+    <div class="rail" id="rail"></div>
+    <div class="rail-label" id="railLabel"></div>
+  </header>
+  <section id="recall">
+    <div class="sec-head"><span class="sec-num">i</span><span class="sec-title">Warm-up 回想</span></div>
+    <p class="sec-note">先別往下看 — 把答案寫出來，再揭曉。</p>
+    <div class="card" id="recallCard"></div>
+    <div class="gate" id="recallGate">
+      <button class="gate-btn" aria-expanded="false" aria-controls="recallAns"><span class="seal">&sect;</span> 揭曉回想題解答</button>
+      <div class="gate-body" id="recallAns"></div>
+    </div>
+  </section>
+  <section id="rule">
+    <div class="sec-head"><span class="sec-num">ii</span><span class="sec-title">今日規則</span></div>
+    <div class="card">
+      <div class="rule-statement" id="ruleStatement"></div>
+      <ol class="elements" id="elements"></ol>
+      <div class="mnemonic" id="mnemonic"></div>
+    </div>
+  </section>
+  <section id="why">
+    <div class="sec-head"><span class="sec-num">iii</span><span class="sec-title">為何會考</span></div>
+    <div class="card"><div class="answer-text" id="whyText"></div></div>
+  </section>
+  <section id="hypo">
+    <div class="sec-head"><span class="sec-num">iv</span><span class="sec-title">Mini-hypo</span></div>
+    <div class="card">
+      <div class="hypo" id="hypoText"></div>
+      <div class="write-prompt">用 3–4 句寫出你的 IRAC 套用，再揭曉示範寫法。</div>
+    </div>
+    <div class="gate" id="hypoGate">
+      <button class="gate-btn" aria-expanded="false" aria-controls="hypoAns"><span class="seal">&sect;</span> 揭曉示範 IRAC 解答</button>
+      <div class="gate-body" id="hypoAns"></div>
+    </div>
+  </section>
+  <footer>
+    <span id="footMeta"></span>
+    <span>非法律意見 · 僅供 UBE/MEE 自學</span>
+  </footer>
+</div>
+<script>
+const DATA = {"day":1,"date":"2026-06-29","subject":"Civil Procedure","ruleTitle":"Personal Jurisdiction — Minimum Contacts","priority":"HIGH","frequency":"tested 18 / 64","progress":{"done":1,"total":14,"label":"高頻交錯課程 · 第 1 / 14 天"},"ruleStatement":"法院對外州被告行使 personal jurisdiction，須 (1) 該州 long-arm statute 授權，且 (2) 合乎 Due Process — 被告與法院地州有 minimum contacts，使行使管轄不違反 traditional notions of fair play and substantial justice。","elements":["Long-arm statute 授權該州法院行使管轄。","Purposeful availment：被告刻意利用該州、享受其法律利益，可合理預見被訴於該州。","Relatedness：specific jurisdiction 須訴因 arise out of / relate to 該接觸；general jurisdiction 須被告在該州 at home。","Fairness：行使管轄須 reasonable（負擔、州利益、原告利益等因素）。"],"mnemonic":{"tag":"助記","text":"P-A-R-R：Purposeful Availment → Relatedness → Reasonableness。"},"why":"MEE 常見型態：外州被告經網站主動向法院地州行銷並出貨、或在該州簽約／單次事故後被起訴。爭點幾乎都在 purposeful availment 與 relatedness，要把事實逐一鉤到要件。","hypo":"D 公司設於 A 州，透過網站主動向 B 州消費者行銷並運送商品。B 州買家 P 因該商品在 B 州受傷，於 B 州法院起訴。D 主張與 B 州無接觸、B 州無管轄。","recall":[{"when":"暖身","q":"MEE 申論的標準寫作骨架 IRAC 四個字母各代表什麼？","answer":"Issue（爭點）、Rule（規則陳述）、Application（把事實套進規則）、Conclusion（結論）。MEE 給分重點在 Application — 把每個要件鉤到事實。"}],"iracModel":[{"k":"Issue","v":"B 州法院對外州被告 D 是否有 personal jurisdiction。"},{"k":"Rule","v":"須 long-arm 授權且符合 Due Process：被告與該州有 minimum contacts（purposeful availment + relatedness）且行使管轄須合乎 fair play and substantial justice。"},{"k":"Application","v":"D 主動向 B 州行銷並出貨，屬刻意利用 B 州市場的 purposeful availment，可合理預見在 B 州被訴；P 之傷害正源於該出貨商品，relatedness 成立（specific jurisdiction）。D 為公司、應訴負擔不過重，B 州對保護州民有利益，行使管轄屬合理。"},{"k":"Conclusion","v":"B 州對 D 有 specific personal jurisdiction。"}]};
+var $ = function(id){ return document.getElementById(id); };
+var esc = function(s){ return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); };
+
+$("dayLabel").textContent = "Day " + DATA.day + " · " + DATA.date;
+$("ruleTitle").textContent = DATA.ruleTitle;
+$("subjectLine").textContent = DATA.subject + " — 主動回想 · 間隔重複 · 即學即寫";
+
+var pr = DATA.priority.toLowerCase();
+$("metaRow").innerHTML =
+  '<span class="tag ' + pr + '">' + esc(DATA.priority) + ' priority</span>' +
+  '<span class="tag freq">' + esc(DATA.frequency) + '</span>' +
+  '<span class="tag freq">' + esc(DATA.subject) + '</span>';
+
+var railHTML = "";
+for (var i = 0; i < DATA.progress.total; i++) {
+  railHTML += '<span class="seg ' + (i < DATA.progress.done ? 'done' : '') + '"></span>';
+}
+$("rail").innerHTML = railHTML;
+$("railLabel").textContent = DATA.progress.label;
+
+$("recallCard").innerHTML = DATA.recall.map(function(r){
+  return '<div class="recall-item"><div class="recall-when">' + esc(r.when) + '</div><div class="recall-q">' + esc(r.q) + '</div></div>';
+}).join("");
+
+$("recallAns").innerHTML = DATA.recall.map(function(r){
+  return '<div class="answer-block"><div class="answer-label">' + esc(r.when) + '</div><div class="answer-text">' + esc(r.answer) + '</div></div>';
+}).join("");
+
+$("ruleStatement").textContent = DATA.ruleStatement;
+$("elements").innerHTML = DATA.elements.map(function(e){ return '<li>' + esc(e) + '</li>'; }).join("");
+$("mnemonic").innerHTML = '<b>' + esc(DATA.mnemonic.tag) + '：</b>' + esc(DATA.mnemonic.text);
+
+$("whyText").textContent = DATA.why;
+
+$("hypoText").textContent = DATA.hypo;
+$("hypoAns").innerHTML = '<div class="irac">' + DATA.iracModel.map(function(l){
+  return '<div class="leg"><span class="k">' + esc(l.k) + '</span><span class="v">' + esc(l.v) + '</span></div>';
+}).join("") + '</div>';
+
+$("footMeta").textContent = "Day " + DATA.day + " · " + DATA.subject + " · " + DATA.ruleTitle;
+
+function wireGate(gateId){
+  var gate = $(gateId);
+  var btn = gate.querySelector(".gate-btn");
+  btn.addEventListener("click", function(){
+    var open = gate.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.querySelector(".seal").nextSibling.textContent = open ? " 隱藏解答" : " 揭曉解答";
+  });
+}
+wireGate("recallGate");
+wireGate("hypoGate");
+</script>
+</body>
+</html>
